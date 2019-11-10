@@ -7,6 +7,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.LocalDate;
+
+import static java.time.Month.APRIL;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
@@ -29,6 +33,12 @@ class PrintStatementAT {
 
     @Test
     void statement_contains_all_transactions() {
+        given(clock.today()).willReturn(
+            LocalDate.of(2014, APRIL, 1),
+            LocalDate.of(2014, APRIL, 2),
+            LocalDate.of(2014, APRIL, 10)
+        );
+
         account.deposit(1000);
         account.withdrawal(100);
         account.deposit(500);
