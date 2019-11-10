@@ -3,7 +3,7 @@ package it.matteopierro.bankaccount;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
@@ -51,15 +51,20 @@ public class StatementPrinter {
     }
 
     private List<Integer> runningBalance(List<Transaction> transactions) {
-        List<Integer> runningBalances = new ArrayList<>();
+        return transactions.stream()
+                .collect(
+                        LinkedList::new,
+                        this::currentRunningBalance,
+                        LinkedList::addAll
+                );
+    }
 
-        int runningBalance = 0;
-        for (Transaction transaction : transactions) {
-            runningBalance += transaction.amount;
-            runningBalances.add(runningBalance);
-        }
+    private boolean currentRunningBalance(LinkedList<Integer> runningBalance, Transaction transaction) {
+        return runningBalance.add(previousBalance(runningBalance) + transaction.amount);
+    }
 
-        return runningBalances;
+    private int previousBalance(LinkedList<Integer> runningBalance) {
+        return runningBalance.isEmpty() ? 0 : runningBalance.getLast();
     }
 }
 
