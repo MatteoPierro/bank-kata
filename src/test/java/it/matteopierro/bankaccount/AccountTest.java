@@ -14,6 +14,7 @@ import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 class AccountTest {
+    private static final int AN_AMOUNT = 100;
     private static final Transaction A_TRANSACTION = new TransactionBuilder().build();
 
     @Mock
@@ -30,16 +31,16 @@ class AccountTest {
 
     @Test
     void it_saves_a_deposit_transaction() {
-        account.deposit(100);
+        account.deposit(AN_AMOUNT);
 
-        verify(ledger).addDeposit(100);
+        verify(ledger).addDeposit(AN_AMOUNT);
     }
 
     @Test
     void it_saves_a_withdrawal_transaction() {
-        account.withdrawal(100);
+        account.withdrawal(AN_AMOUNT);
 
-        verify(ledger).addWithdrawal(100);
+        verify(ledger).addWithdrawal(AN_AMOUNT);
     }
 
     @Test

@@ -1,9 +1,6 @@
 package it.matteopierro.bankaccount.feature;
 
-import it.matteopierro.bankaccount.Account;
-import it.matteopierro.bankaccount.Console;
-import it.matteopierro.bankaccount.Ledger;
-import it.matteopierro.bankaccount.StatementPrinter;
+import it.matteopierro.bankaccount.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,13 +13,16 @@ import static org.mockito.Mockito.verify;
 class PrintStatementAT {
 
     @Mock
+    private Clock clock;
+    @Mock
     private Console console;
 
     private Account account;
 
     @BeforeEach
     void setUp() {
-        Ledger ledger = new Ledger();
+        Transactions transactions = new InMemoryTransactions();
+        Ledger ledger = new Ledger(clock, transactions);
         StatementPrinter statementPrinter = new StatementPrinter();
         account = new Account(ledger, statementPrinter);
     }
