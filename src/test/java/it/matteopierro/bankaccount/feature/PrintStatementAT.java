@@ -2,6 +2,8 @@ package it.matteopierro.bankaccount.feature;
 
 import it.matteopierro.bankaccount.Account;
 import it.matteopierro.bankaccount.Console;
+import it.matteopierro.bankaccount.Ledger;
+import it.matteopierro.bankaccount.StatementPrinter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,7 +22,9 @@ class PrintStatementAT {
 
     @BeforeEach
     void setUp() {
-        account = new Account();
+        Ledger ledger = new Ledger();
+        StatementPrinter statementPrinter = new StatementPrinter();
+        account = new Account(ledger, statementPrinter);
     }
 
     @Test

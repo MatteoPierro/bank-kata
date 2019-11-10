@@ -1,15 +1,23 @@
 package it.matteopierro.bankaccount;
 
 public class Account {
+    private final Ledger ledger;
+    private final StatementPrinter statementPrinter;
+
+    public Account(Ledger ledger, StatementPrinter statementPrinter) {
+        this.ledger = ledger;
+        this.statementPrinter = statementPrinter;
+    }
+
     public void deposit(int amount) {
-        throw new UnsupportedOperationException();
+        ledger.addDeposit(amount);
     }
 
     public void withdrawal(int amount) {
-        throw new UnsupportedOperationException();
+        ledger.addWithdrawal(amount);
     }
 
     public void printStatement() {
-        throw new UnsupportedOperationException();
+        statementPrinter.print(ledger.allTransactions());
     }
 }
