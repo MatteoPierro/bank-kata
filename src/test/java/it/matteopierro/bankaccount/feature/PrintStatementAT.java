@@ -23,7 +23,7 @@ class PrintStatementAT {
     void setUp() {
         Transactions transactions = new InMemoryTransactions();
         Ledger ledger = new Ledger(clock, transactions);
-        StatementPrinter statementPrinter = new StatementPrinter();
+        StatementPrinter statementPrinter = new StatementPrinter(console);
         account = new Account(ledger, statementPrinter);
     }
 
