@@ -6,9 +6,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import javax.sql.rowset.spi.TransactionalWriter;
-
-import java.util.Collections;
 import java.util.List;
 
 import static java.util.Collections.singletonList;
@@ -17,6 +14,8 @@ import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 class AccountTest {
+    private static final Transaction A_TRANSACTION = new TransactionBuilder().build();
+
     @Mock
     private Ledger ledger;
     @Mock
@@ -45,7 +44,7 @@ class AccountTest {
 
     @Test
     void it_prints_the_statement() {
-        List<Transaction> transactions = singletonList(new Transaction());
+        List<Transaction> transactions = singletonList(A_TRANSACTION);
         given(ledger.allTransactions()).willReturn(transactions);
 
         account.printStatement();
