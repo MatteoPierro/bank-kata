@@ -1,7 +1,6 @@
-package it.matteopierro.bankaccount.feature;
+package it.matteopierro.bankaccount;
 
-import it.matteopierro.bankaccount.Transaction;
-import it.matteopierro.bankaccount.Transactions;
+import it.matteopierro.bankaccount.feature.InMemoryTransactions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
