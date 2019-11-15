@@ -1,13 +1,18 @@
 package it.matteopierro.bankaccount;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TransactionRepository {
+
+    private List<Transaction> transactions = new ArrayList<>();
+
     public void store(Transaction transaction) {
-        throw new UnsupportedOperationException();
+        transactions.add(transaction);
     }
 
     public List<Transaction> getTransactions() {
-        throw new UnsupportedOperationException();
+        return new ArrayList<>(transactions);
     }
+
 }
