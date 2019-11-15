@@ -39,7 +39,7 @@ public class AccountTest {
 
     @Test
     void testPrintStatement() {
-        List<Transaction> transactions = Arrays.asList(new Transaction());
+        List<Transaction> transactions = Arrays.asList(new Transaction("09/09/1909",65));
         when(ledger.getTransactions()).thenReturn(transactions);
         Account account = new Account(ledger, statementPrinter);
 

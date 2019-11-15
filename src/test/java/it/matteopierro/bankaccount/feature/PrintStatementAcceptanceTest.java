@@ -1,9 +1,6 @@
 package it.matteopierro.bankaccount.feature;
 
-import it.matteopierro.bankaccount.Account;
-import it.matteopierro.bankaccount.Ledger;
-import it.matteopierro.bankaccount.Printer;
-import it.matteopierro.bankaccount.StatementPrinter;
+import it.matteopierro.bankaccount.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -19,7 +16,7 @@ public class PrintStatementAcceptanceTest {
 
     @Test
     void printStatement() {
-        Ledger ledger = new Ledger();
+        Ledger ledger = new Ledger(new BankClock(), new TransactionRepository());
         StatementPrinter statementPrinter = new StatementPrinter();
         Account account = new Account(ledger, statementPrinter);
 
