@@ -6,6 +6,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
@@ -13,12 +14,15 @@ public class PrintStatementAcceptanceTest {
 
     @Mock
     private Printer printer;
+    @Mock
+    private BankClock bankClock;
 
     @Test
     void printStatement() {
-        Ledger ledger = new Ledger(new BankClock(), new TransactionRepository());
+        Ledger ledger = new Ledger(bankClock, new TransactionRepository());
         StatementPrinter statementPrinter = new StatementPrinter();
         Account account = new Account(ledger, statementPrinter);
+        given(bankClock.getToday()).willReturn("01/04/2014","02/04/2014", "10/04/2014");
 
         account.deposit(1000);
         account.withdrawal(100);
