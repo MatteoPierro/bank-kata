@@ -16,6 +16,6 @@ public class Account {
     }
 
     public void withdrawal(int amount) {
-        throw new UnsupportedOperationException();
+        ledger.addWithdrawal(amount);
     }
 }

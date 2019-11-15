@@ -21,4 +21,13 @@ public class AccountTest {
 
         verify(ledger).addDeposit(1);
     }
+
+    @Test
+    void testWithdraw() {
+        Account account = new Account(ledger);
+
+        account.withdrawal(1);
+
+        verify(ledger).addWithdrawal(1);
+    }
 }
