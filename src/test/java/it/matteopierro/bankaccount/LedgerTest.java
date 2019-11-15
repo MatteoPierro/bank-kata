@@ -28,4 +28,18 @@ class LedgerTest {
         Transaction transaction = new Transaction(date, amount);
         verify(transactionRepository).store(transaction);
     }
+
+    @Test
+    void testWithdraw() {
+        Ledger ledger = new Ledger(bankClock, transactionRepository);
+        String date = "04/09/1980";
+        when(bankClock.getToday()).thenReturn(date);
+
+        int amount = 500;
+        ledger.addWithdrawal(amount);
+
+        Transaction transaction = new Transaction(date, -amount);
+        verify(transactionRepository).store(transaction);
+
+    }
 }

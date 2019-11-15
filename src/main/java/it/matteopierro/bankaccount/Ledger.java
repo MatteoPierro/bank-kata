@@ -14,13 +14,14 @@ public class Ledger {
     }
 
     public void addDeposit(int amount) {
-        Transaction transaction = new Transaction(bankClock.getToday(),amount);
+        Transaction transaction = new Transaction(bankClock.getToday(), amount);
         transactionRepository.store(transaction);
 
     }
 
     public void addWithdrawal(int amount) {
-        throw new UnsupportedOperationException();
+        Transaction transaction = new Transaction(bankClock.getToday(), -amount);
+        transactionRepository.store(transaction);
     }
 
     public List<Transaction> getTransactions() {
