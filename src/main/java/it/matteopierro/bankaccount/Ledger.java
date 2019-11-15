@@ -25,6 +25,6 @@ public class Ledger {
     }
 
     public List<Transaction> getTransactions() {
-        throw new UnsupportedOperationException();
+        return transactionRepository.getTransactions();
     }
 }
