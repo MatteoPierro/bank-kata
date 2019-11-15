@@ -1,6 +1,7 @@
 package it.matteopierro.bankaccount.feature;
 
 import it.matteopierro.bankaccount.Account;
+import it.matteopierro.bankaccount.Ledger;
 import it.matteopierro.bankaccount.Printer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,7 +18,8 @@ public class PrintStatementAcceptanceTest {
 
     @Test
     void printStatement() {
-        Account account = new Account();
+        Ledger ledger = new Ledger();
+        Account account = new Account(ledger);
 
         account.deposit(1000);
         account.withdrawal(100);

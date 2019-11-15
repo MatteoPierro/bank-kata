@@ -2,7 +2,7 @@ package it.matteopierro.bankaccount;
 
 public class App {
     public static void main(String[] args) {
-        Account account = new Account();
+        Account account = new Account(new Ledger());
 
         account.deposit(1000);
         account.withdrawal(200);
